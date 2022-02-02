@@ -3,6 +3,7 @@
 
 .App {
   height: 100vh;
+  color: var(--black);
   background-color: var(--very-light-gray);
 
   &-header {
@@ -11,7 +12,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--black);
     background-color: var(--white);
 
     &__title {
@@ -28,6 +28,15 @@
         line-height: 1rem;
         margin-left: 0.625rem;
       }
+    }
+  }
+
+  &.dark_mode {
+    color: var(--white);
+    background-color: var(--very-dark-blue);
+
+    .App-header {
+      background-color: var(--dark-blue);
     }
   }
 }
