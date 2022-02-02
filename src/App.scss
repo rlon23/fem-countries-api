@@ -1,0 +1,33 @@
+@use './sass/variables';
+@use './sass/mixins';
+
+.App {
+  height: 100vh;
+  background-color: var(--very-light-gray);
+
+  &-header {
+    padding: 1.9375rem 1.0625rem 1.875rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--black);
+    background-color: var(--white);
+
+    &__title {
+      font-size: 0.875rem;
+      font-weight: 800;
+      letter-spacing: -0.005em;
+    }
+
+    .dark-mode-toggle {
+      display: flex;
+      &__text {
+        font-size: 0.75rem;
+        font-weight: 600;
+        line-height: 1rem;
+        margin-left: 0.625rem;
+      }
+    }
+  }
+}

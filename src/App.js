@@ -1,22 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { FaRegMoon, FaMoon } from 'react-icons/fa';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header className='App-header'>
+        <p className='App-header__title'>Where in the world?</p>
+        <div className='dark-mode-toggle'>
+          <FaRegMoon />
+          <p className='dark-mode-toggle__text'>Dark Mode</p>
+        </div>
       </header>
     </div>
   );
