@@ -1,9 +1,22 @@
 import './App.scss';
 import { FaRegMoon, FaMoon } from 'react-icons/fa';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import SearchForm from './components/SearchForm/SearchForm';
 
 function App() {
   const [dark_mode, setDark_mode] = useState(false);
+
+  useEffect(() => {
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      setDark_mode(true);
+    }
+  }, []);
+
+  useEffect(() => {}, []);
+
   return (
     <div className={`${dark_mode ? 'App dark_mode' : 'App'}`}>
       <header className='App-header'>
@@ -16,6 +29,9 @@ function App() {
           <p className='dark-mode-toggle__text'>Dark Mode</p>
         </div>
       </header>
+      <main>
+        <SearchForm dark_mode={dark_mode} />
+      </main>
     </div>
   );
 }

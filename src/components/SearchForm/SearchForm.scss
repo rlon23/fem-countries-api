@@ -1,0 +1,8 @@
+.SearchForm {
+  background-color: var(--dark-blue);
+
+  &__input {
+    background-image: url('./../../images/search-solid.svg');
+    background-repeat: no-repeat;
+  }
+}
