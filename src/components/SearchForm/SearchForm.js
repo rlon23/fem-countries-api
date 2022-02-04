@@ -1,13 +1,17 @@
 import './SearchForm.scss';
 
 function SearchForm({ dark_mode }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <section
       className={`${
         dark_mode ? 'SearchForm section dark_mode' : 'SearchForm section'
       }`}
     >
-      <form action='' className='SearchForm__form'>
+      <form className='SearchForm__form' onSubmit={handleSubmit}>
         <label htmlFor='search' className='SearchForm__label' />
         <input
           type='text'

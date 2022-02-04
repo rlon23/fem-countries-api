@@ -29,7 +29,7 @@ function App() {
           <p className='dark-mode-toggle__text'>Dark Mode</p>
         </div>
       </header>
-      <main>
+      <main className='App__main'>
         <SearchForm dark_mode={dark_mode} />
       </main>
     </div>
