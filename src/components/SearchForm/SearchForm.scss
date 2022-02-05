@@ -6,27 +6,36 @@
     background-repeat: no-repeat;
     background-size: 0.9375rem 0.9375rem;
     background-position: 2rem;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    font-size: 0.75rem;
+    // box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
     font-weight: 300;
     border: none;
     border-radius: 4px;
     height: 47px;
     width: 100%;
-  }
 
-  &__input::placeholder {
-    color: var(--dark-gray);
+    &::placeholder {
+      color: var(--dark-gray);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 1px hsla(207, 26%, 17%, 1);
+    }
   }
 
   &.dark_mode {
     .SearchForm__input {
       background-color: var(--dark-blue);
       background-image: url('./../../images/search-solid-white.svg');
-    }
 
-    .SearchForm__input::placeholder {
-      color: var(--white);
+      &::placeholder {
+        color: var(--white);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 1px hsla(0, 0%, 98%, 1);
+      }
     }
   }
 }

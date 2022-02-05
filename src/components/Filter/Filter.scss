@@ -1,0 +1,47 @@
+.Filter {
+  .dropdown__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--white);
+    height: 47px;
+    width: 200px;
+    font-family: 'Nunito Sans';
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.3125rem;
+  }
+
+  .region_list {
+    background-color: var(--white);
+    border-radius: 4px;
+    width: 200px;
+    padding: 1rem 1.5rem;
+    list-style: none;
+
+    .regions {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.dark_mode {
+    .dropdown__button {
+      background-color: var(--dark-blue);
+      color: var(--white);
+    }
+
+    .region_list {
+      background-color: var(--dark-blue);
+    }
+  }
+}

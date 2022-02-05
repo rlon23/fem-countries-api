@@ -2,6 +2,7 @@ import './App.scss';
 import { FaRegMoon, FaMoon } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import SearchForm from './components/SearchForm/SearchForm';
+import Filter from './components/Filter/Filter';
 
 function App() {
   const [dark_mode, setDark_mode] = useState(false);
@@ -31,6 +32,7 @@ function App() {
       </header>
       <main className='App__main'>
         <SearchForm dark_mode={dark_mode} />
+        <Filter dark_mode={dark_mode} />
       </main>
     </div>
   );

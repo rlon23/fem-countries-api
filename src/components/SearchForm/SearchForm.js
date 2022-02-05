@@ -17,7 +17,7 @@ function SearchForm({ dark_mode }) {
           type='text'
           name='search'
           id='search'
-          className='SearchForm__input'
+          className='SearchForm__input has_shadow'
           placeholder='Search for a country...'
         />
       </form>
