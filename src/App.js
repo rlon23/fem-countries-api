@@ -3,9 +3,11 @@ import { FaRegMoon, FaMoon } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import SearchForm from './components/SearchForm/SearchForm';
 import Filter from './components/Filter/Filter';
+import CountryCard from './components/CountryCard/CountryCard';
 
 function App() {
   const [dark_mode, setDark_mode] = useState(false);
+  const [filter_open, setFilter_open] = useState(false);
 
   useEffect(() => {
     if (
@@ -32,7 +34,13 @@ function App() {
       </header>
       <main className='App__main'>
         <SearchForm dark_mode={dark_mode} />
-        <Filter dark_mode={dark_mode} />
+        <Filter
+          dark_mode={dark_mode}
+          filter_open={filter_open}
+          setFilter_open={setFilter_open}
+        />
+        <CountryCard dark_mode={dark_mode} />
+        <CountryCard dark_mode={dark_mode} />
       </main>
     </div>
   );

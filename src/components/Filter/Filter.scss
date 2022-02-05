@@ -1,4 +1,7 @@
 .Filter {
+  position: relative;
+  margin-bottom: 2.0625rem;
+
   .dropdown__button {
     display: flex;
     align-items: center;
@@ -10,7 +13,7 @@
     height: 47px;
     width: 200px;
     font-family: 'Nunito Sans';
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     line-height: 1rem;
     padding: 1rem 1.25rem;
@@ -18,15 +21,23 @@
   }
 
   .region_list {
+    display: none;
+    position: absolute;
     background-color: var(--white);
     border-radius: 4px;
     width: 200px;
     padding: 1rem 1.5rem;
+    font-size: 0.75rem;
     list-style: none;
+
+    &.filter_open {
+      display: block;
+    }
 
     .regions {
       margin-bottom: 0.5rem;
       font-weight: 600;
+      cursor: pointer;
 
       &:last-child {
         margin-bottom: 0;
