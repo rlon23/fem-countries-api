@@ -1,7 +1,14 @@
 import './Filter.scss';
 import { FaChevronDown } from 'react-icons/fa';
 
-function Filter({ dark_mode, filter_open, setFilter_open, filter }) {
+export const Filter = ({
+  dark_mode,
+  filter_open,
+  setFilter_open,
+  filter,
+  filterByRegion,
+  setRegionFilter,
+}) => {
   return (
     <section className={`${dark_mode ? 'Filter dark_mode' : 'Filter'}`}>
       <button
@@ -20,14 +27,31 @@ function Filter({ dark_mode, filter_open, setFilter_open, filter }) {
       >
         {filter.map((region, index) => {
           return (
-            <li className='regions' key={index}>
+            <li
+              className='regions'
+              key={index}
+              onClick={() => {
+                filterByRegion(`${region}`);
+                setFilter_open(false);
+              }}
+            >
               {region}
             </li>
           );
         })}
+
+        <li
+          className='regions'
+          onClick={() => {
+            setRegionFilter('all');
+            setFilter_open(false);
+          }}
+        >
+          All
+        </li>
       </ul>
     </section>
   );
-}
+};
 
 export default Filter;

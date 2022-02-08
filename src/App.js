@@ -6,14 +6,16 @@ import { useCallback } from 'react';
 import SearchForm from './components/SearchForm/SearchForm';
 import Filter from './components/Filter/Filter';
 import CountryCard from './components/CountryCard/CountryCard';
-const url = 'https://restcountries.com/v2/all';
+const url = 'https://restcountries.com/v3.1/all';
 
 function App() {
   const [dark_mode, setDark_mode] = useState(false);
   const [filter_open, setFilter_open] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [countries, setCountries] = useState([]);
-  const [filter, setFilter] = useState([]);
+  const [regionList, setRegionList] = useState([]);
+  const [filteredCountries, setFilteredCountries] = useState([]);
+  const [regionFilter, setRegionFilter] = useState('all');
 
   const getCountries = useCallback(async () => {
     setIsLoading(true);
@@ -21,9 +23,17 @@ function App() {
     try {
       const response = await fetch(url);
       const countries = await response.json();
-      setCountries(countries);
+      setCountries(
+        countries.sort((a, b) =>
+          a.name.common > b.name.common
+            ? 1
+            : b.name.common > a.name.common
+            ? -1
+            : 0
+        )
+      );
       console.log(countries);
-      setRegionsFilter(countries);
+      createRegionsFilter(countries);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -31,11 +41,19 @@ function App() {
     }
   }, []);
 
-  const setRegionsFilter = (countries) => {
+  const createRegionsFilter = (countries) => {
     const regions = [
       ...new Set(countries.map((country) => country.region)),
     ].sort();
-    setFilter(regions);
+    setRegionList(regions);
+  };
+
+  const filterByRegion = (regionName) => {
+    const filtered = countries.filter(
+      (country) => country.region === regionName
+    );
+    setRegionFilter(regionName);
+    setFilteredCountries(filtered);
   };
 
   useEffect(() => {
@@ -65,28 +83,35 @@ function App() {
           <p className='dark-mode-toggle__text'>Dark Mode</p>
         </div>
       </header>
+
       <main className='App__main'>
         <SearchForm dark_mode={dark_mode} />
+
         <Filter
           dark_mode={dark_mode}
-          filter={filter}
+          filter={regionList}
           filter_open={filter_open}
           setFilter_open={setFilter_open}
+          countries={countries}
+          filterByRegion={filterByRegion}
+          setRegionFilter={setRegionFilter}
         />
 
-        {countries.map((country) => {
-          return (
-            <CountryCard
-              dark_mode={dark_mode}
-              key={country.alpha3Code}
-              name={country.name}
-              population={country.population}
-              region={country.region}
-              capital={country.capital}
-              flag={country.flag}
-            />
-          );
-        })}
+        {(regionFilter === 'all' ? countries : filteredCountries).map(
+          (country) => {
+            return (
+              <CountryCard
+                dark_mode={dark_mode}
+                key={country.cca3}
+                name={country.name.common}
+                population={country.population}
+                region={country.region}
+                capital={country.capital}
+                flag={country.flags.svg}
+              />
+            );
+          }
+        )}
       </main>
     </div>
   );
