@@ -1,7 +1,7 @@
 import './Filter.scss';
 import { FaChevronDown } from 'react-icons/fa';
 
-function Filter({ dark_mode, filter_open, setFilter_open }) {
+function Filter({ dark_mode, filter_open, setFilter_open, filter }) {
   return (
     <section className={`${dark_mode ? 'Filter dark_mode' : 'Filter'}`}>
       <button
@@ -18,11 +18,13 @@ function Filter({ dark_mode, filter_open, setFilter_open }) {
             : 'region_list has_shadow'
         }`}
       >
-        <li className='regions'>Africa</li>
-        <li className='regions'>America</li>
-        <li className='regions'>Asia</li>
-        <li className='regions'>Europe</li>
-        <li className='regions'>Oceania</li>
+        {filter.map((region, index) => {
+          return (
+            <li className='regions' key={index}>
+              {region}
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

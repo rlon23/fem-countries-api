@@ -1,6 +1,6 @@
 import './CountryCard.scss';
 
-function CountryCard({ dark_mode }) {
+function CountryCard({ dark_mode, name, population, region, capital, flag }) {
   return (
     <article
       className={`${
@@ -10,18 +10,21 @@ function CountryCard({ dark_mode }) {
       }`}
     >
       <div className='CountryCard__flag'>
-        <img src='' alt='' />
+        <img src={flag} alt='' />
       </div>
       <div className='CountryCard__info'>
-        <h3 className='CountryCard__name'>Germany</h3>
+        <h3 className='CountryCard__name'>{name}</h3>
         <p className='CountryCard__population'>
-          <span>Population: </span>81,770,900
+          <span>Population: </span>
+          {new Intl.NumberFormat().format(population)}
         </p>
         <p className='CountryCard__region'>
-          <span>Region: </span>Europe
+          <span>Region: </span>
+          {region}
         </p>
         <p className='CountryCard__capital'>
-          <span>Capital: </span>Berlin
+          <span>Capital: </span>
+          {capital}
         </p>
       </div>
     </article>
