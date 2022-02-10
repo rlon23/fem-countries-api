@@ -1,14 +1,17 @@
 import './Filter.scss';
 import { FaChevronDown } from 'react-icons/fa';
+import { useGlobalContext } from '../../context';
 
-export const Filter = ({
-  dark_mode,
-  filter_open,
-  setFilter_open,
-  filter,
-  filterByRegion,
-  setRegionFilter,
-}) => {
+export default function Filter() {
+  const {
+    dark_mode,
+    filter_open,
+    setFilter_open,
+    regionList,
+    filterByRegion,
+    setRegionFilter,
+  } = useGlobalContext();
+
   return (
     <section className={`${dark_mode ? 'Filter dark_mode' : 'Filter'}`}>
       <button
@@ -25,7 +28,7 @@ export const Filter = ({
             : 'region_list has_shadow'
         }`}
       >
-        {filter.map((region, index) => {
+        {regionList.map((region, index) => {
           return (
             <li
               className='regions'
@@ -52,6 +55,4 @@ export const Filter = ({
       </ul>
     </section>
   );
-};
-
-export default Filter;
+}
