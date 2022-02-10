@@ -1,6 +1,14 @@
+import { Link, useNavigate } from 'react-router-dom';
 import './CountryCard.scss';
 
 function CountryCard({ dark_mode, name, population, region, capital, flag }) {
+  let navigate = useNavigate();
+
+  const goToInfo = () => {
+    console.log(`clicked on ${name}`);
+    navigate(`/country/${name}`);
+  };
+
   return (
     <article
       className={`${
@@ -8,6 +16,7 @@ function CountryCard({ dark_mode, name, population, region, capital, flag }) {
           ? 'CountryCard dark_mode has_shadow'
           : 'CountryCard has_shadow'
       }`}
+      onClick={goToInfo}
     >
       <div className='CountryCard__flag'>
         <img src={flag} alt='' />

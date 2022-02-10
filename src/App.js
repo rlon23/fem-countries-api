@@ -1,25 +1,18 @@
-import './App.scss';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CountryList from './components/CountryList/CountryList';
-import SearchForm from './components/SearchForm/SearchForm';
-import Filter from './components/Filter/Filter';
+import Header from './components/Header/Header';
+import CountryInfo from './pages/CountryInfo';
+import Home from './pages/Home';
 
 function App() {
   return (
     <BrowserRouter>
-      <SearchForm />
-      <Filter />
-      <CountryList />
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/country/:name' element={<CountryInfo />} />
+      </Routes>
     </BrowserRouter>
   );
-  // return (
-  //   <div className={`${dark_mode ? 'App dark_mode' : 'App'}`}>
-  //     <main className='App__main'>
-  //
-  //     </main>
-  //   </div>
-  // );
 }
 
 export default App;

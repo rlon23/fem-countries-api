@@ -1,0 +1,11 @@
+.page {
+  color: var(--black);
+  background-color: var(--very-light-gray);
+
+  padding: 1.5rem 1rem 1.5rem;
+
+  &.dark_mode {
+    color: var(--white);
+    background-color: var(--very-dark-blue);
+  }
+}

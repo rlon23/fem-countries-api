@@ -1,6 +1,8 @@
+import { useGlobalContext } from '../../context';
 import './SearchForm.scss';
 
-function SearchForm({ dark_mode }) {
+function SearchForm() {
+  const { dark_mode } = useGlobalContext();
   const handleSubmit = (e) => {
     e.preventDefault();
   };
