@@ -142,7 +142,7 @@ export default function CountryInfo() {
         <div className='secondary-info'>
           <p className='p'>
             <span>Top Level Domain: </span>
-            {tld}
+            {tld.map((dom) => `${dom}, `)}
           </p>
           <p className='p'>
             <span>Currencies: </span>
