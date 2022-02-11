@@ -1,5 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
 import './CountryCard.scss';
+import { useNavigate } from 'react-router-dom';
 
 function CountryCard({ dark_mode, name, population, region, capital, flag }) {
   let navigate = useNavigate();

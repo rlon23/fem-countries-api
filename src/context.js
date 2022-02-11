@@ -27,7 +27,6 @@ const AppProvider = ({ children }) => {
             : 0
         )
       );
-      console.log(data);
       createRegionsFilter(data);
       setIsLoading(false);
     } catch (error) {
