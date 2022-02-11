@@ -33,6 +33,9 @@ export default function CountryInfo() {
           borders,
         } = item;
 
+        const langArr = Object.keys(languages).map((key) => languages[key]);
+        const currArr = Object.keys(currencies).map((key) => currencies[key]);
+
         const newCountry = {
           flags,
           countryName,
@@ -41,8 +44,8 @@ export default function CountryInfo() {
           subregion,
           capital,
           tld,
-          currencies,
-          languages,
+          currArr,
+          langArr,
           borders,
         };
         setCountry(newCountry);
@@ -65,7 +68,7 @@ export default function CountryInfo() {
           dark_mode ? 'CountryInfo page dark_mode' : 'CountryInfo page'
         }`}
       >
-        <p>didn't load</p>
+        <p>Country doesn't exist</p>
       </div>
     );
   } else {
@@ -77,8 +80,8 @@ export default function CountryInfo() {
       subregion,
       capital,
       tld,
-      currencies,
-      languages,
+      currArr,
+      langArr,
       borders,
     } = country;
     return (
@@ -121,18 +124,24 @@ export default function CountryInfo() {
         </p>
         <p>
           <span>Currencies: </span>
-          {console.log(currencies)}
+          {`${currArr[0].name} ${currArr[0].symbol}`}
         </p>
 
-        <p>
-          <span>Languages: </span>
-          {Object.values(languages)}
-        </p>
+        {langArr ? (
+          <p>
+            <span>Languages: </span>
+            {langArr.join(', ')}
+          </p>
+        ) : null}
 
-        <p>
-          <span>Border Countries: </span>
-          {Object.values(borders)}
-        </p>
+        {borders ? (
+          <p>
+            <span>Border Countries: </span>
+            {borders.map((item) => {
+              return <button key={item}>{item}</button>;
+            })}
+          </p>
+        ) : null}
       </div>
     );
   }

@@ -5,7 +5,6 @@ function CountryCard({ dark_mode, name, population, region, capital, flag }) {
   let navigate = useNavigate();
 
   const goToInfo = () => {
-    console.log(`clicked on ${name}`);
     navigate(`/country/${name}`);
   };
 
