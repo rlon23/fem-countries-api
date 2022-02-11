@@ -17,6 +17,10 @@ export default function CountryInfo() {
     navigate('/');
   };
 
+  const goToCountry = (cName) => {
+    navigate(`/country/${cName}`);
+  };
+
   const getCountryInfo = useCallback(() => {
     countries.forEach((item) => {
       if (item.name.common === name) {
@@ -35,6 +39,19 @@ export default function CountryInfo() {
 
         const langArr = Object.keys(languages).map((key) => languages[key]);
         const currArr = Object.keys(currencies).map((key) => currencies[key]);
+        const bordersArr = [];
+        const getBorderFullName = () => {
+          if (borders) {
+            for (let i = 0; i < countries.length; i++) {
+              for (let j = 0; j < borders.length; j++) {
+                if (countries[i].cca3 === borders[j]) {
+                  bordersArr.push(countries[i].name.common);
+                }
+              }
+            }
+          }
+        };
+        getBorderFullName();
 
         const newCountry = {
           flags,
@@ -46,7 +63,7 @@ export default function CountryInfo() {
           tld,
           currArr,
           langArr,
-          borders,
+          bordersArr,
         };
         setCountry(newCountry);
       }
@@ -82,7 +99,7 @@ export default function CountryInfo() {
       tld,
       currArr,
       langArr,
-      borders,
+      bordersArr,
     } = country;
     return (
       <div
@@ -90,57 +107,74 @@ export default function CountryInfo() {
           dark_mode ? 'CountryInfo page dark_mode' : 'CountryInfo page'
         }`}
       >
-        <button onClick={goToHome}>
+        <button className='btn has_shadow' onClick={goToHome}>
           <FaArrowLeft />
           Back
         </button>
         <div className='CountryInfo__flag'>
           <img src={flags.svg} alt='' />
         </div>
-        <p>{name}</p>
-        <p>
-          <span>Official Name: </span>
-          {countryName.official}
-        </p>
-        <p>
-          <span>Population: </span>
-          {new Intl.NumberFormat().format(population)}
-        </p>
-        <p>
-          <span>Region: </span>
-          {region}
-        </p>
-        <p>
-          <span>Sub Region: </span>
-          {subregion}
-        </p>
-        <p>
-          <span>Capital: </span>
-          {capital}
-        </p>
-        <p>
-          <span>Top Level Domain: </span>
-          {tld}
-        </p>
-        <p>
-          <span>Currencies: </span>
-          {`${currArr[0].name} ${currArr[0].symbol}`}
-        </p>
+        <div className='main-info'>
+          <p className='common-name'>{name}</p>
 
-        {langArr ? (
-          <p>
-            <span>Languages: </span>
-            {langArr.join(', ')}
+          <p className='p'>
+            <span>Official Name: </span>
+            {countryName.official}
           </p>
-        ) : null}
+          <p className='p'>
+            <span>Population: </span>
+            {new Intl.NumberFormat().format(population)}
+          </p>
+          <p className='p'>
+            <span>Region: </span>
+            {region}
+          </p>
+          <p className='p'>
+            <span>Sub Region: </span>
+            {subregion}
+          </p>
+          <p className='p'>
+            <span>Capital: </span>
+            {capital}
+          </p>
+        </div>
 
-        {borders ? (
-          <p>
-            <span>Border Countries: </span>
-            {borders.map((item) => {
-              return <button key={item}>{item}</button>;
-            })}
+        <div className='secondary-info'>
+          <p className='p'>
+            <span>Top Level Domain: </span>
+            {tld}
           </p>
+          <p className='p'>
+            <span>Currencies: </span>
+            {`${currArr[0].name} (${currArr[0].symbol})`}
+          </p>
+
+          {langArr ? (
+            <p className='p'>
+              <span>Languages: </span>
+              {langArr.join(', ')}
+            </p>
+          ) : null}
+        </div>
+
+        {bordersArr.length ? (
+          <div className='border-countries'>
+            <p className='p'>Border Countries:</p>
+            {console.log(bordersArr)}
+            <div className='countries-buttons'>
+              {bordersArr.map((ctry) => {
+                return (
+                  <button
+                    className='btn btn-country has_shadow'
+                    key={ctry}
+                    onClick={() => goToCountry(ctry)}
+                  >
+                    {ctry}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         ) : null}
       </div>
     );
