@@ -25,6 +25,7 @@
 
   &.dark_mode {
     .SearchForm__input {
+      color: var(--white);
       background-color: var(--dark-blue);
       background-image: url('./../../images/search-solid-white.svg');
 

@@ -30,10 +30,13 @@ function CountryCard({ dark_mode, name, population, region, capital, flag }) {
           <span>Region: </span>
           {region}
         </p>
-        <p className='CountryCard__capital'>
-          <span>Capital: </span>
-          {capital}
-        </p>
+
+        {capital ? (
+          <p className='CountryCard__capital'>
+            <span>Capital: </span>
+            {capital}
+          </p>
+        ) : null}
       </div>
     </article>
   );

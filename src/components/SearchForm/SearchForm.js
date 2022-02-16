@@ -1,11 +1,18 @@
+import { useEffect, useRef } from 'react';
 import { useGlobalContext } from '../../context';
 import './SearchForm.scss';
 
 function SearchForm() {
-  const { dark_mode } = useGlobalContext();
+  const { dark_mode, filterByWord } = useGlobalContext();
+  const searchValue = useRef('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    searchValue.current.focus();
+  }, []);
 
   return (
     <section
@@ -21,6 +28,8 @@ function SearchForm() {
           id='search'
           className='SearchForm__input has_shadow'
           placeholder='Search for a country...'
+          ref={searchValue}
+          onChange={() => filterByWord(searchValue.current.value)}
         />
       </form>
     </section>

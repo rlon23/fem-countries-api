@@ -50,6 +50,22 @@ const AppProvider = ({ children }) => {
     setFilteredCountries(filtered);
   };
 
+  const filterByWord = (word) => {
+    let lowerCase = word.toLowerCase();
+
+    if (word === '') {
+      setRegionFilter('all');
+    }
+
+    const byWord = countries.filter((country) =>
+      country.name.common.toLowerCase().includes(lowerCase)
+    );
+
+    console.log(typeof word, byWord);
+    setRegionFilter(lowerCase);
+    setFilteredCountries(byWord);
+  };
+
   useEffect(() => {
     if (
       window.matchMedia &&
@@ -79,6 +95,7 @@ const AppProvider = ({ children }) => {
         regionFilter,
         setRegionFilter,
         filterByRegion,
+        filterByWord,
       }}
     >
       {children}
