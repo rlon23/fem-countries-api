@@ -12,17 +12,42 @@ export default function CountryInfo() {
   const [country, setCountry] = useState(null);
   let navigate = useNavigate();
 
-  const goToHome = () => {
-    navigate('/');
+  const goBack = () => {
+    navigate(-1);
   };
 
   const goToCountry = (cName) => {
     navigate(`/country/${cName}`);
   };
 
+  const getBorderFullName = useCallback(
+    (borders) => {
+      let arr = [];
+      if (borders) {
+        for (let i = 0; i < countries.length; i++) {
+          for (let j = 0; j < borders.length; j++) {
+            if (countries[i].cca3 === borders[j]) {
+              arr.push(countries[i].name.common);
+            }
+          }
+        }
+      }
+      return arr;
+    },
+    [countries]
+  );
+
+  const getValuesArr = (obj) => {
+    if (obj) {
+      return Object.keys(obj).map((key) => obj[key]);
+    } else {
+      return null;
+    }
+  };
+
   const getCountryInfo = useCallback(() => {
     countries.forEach((item) => {
-      if (item.name.common === name) {
+      if (item.name.common.toLowerCase() === name.toLowerCase()) {
         const {
           flags,
           name: countryName,
@@ -36,21 +61,9 @@ export default function CountryInfo() {
           borders,
         } = item;
 
-        const langArr = Object.keys(languages).map((key) => languages[key]);
-        const currArr = Object.keys(currencies).map((key) => currencies[key]);
-        const bordersArr = [];
-        const getBorderFullName = () => {
-          if (borders) {
-            for (let i = 0; i < countries.length; i++) {
-              for (let j = 0; j < borders.length; j++) {
-                if (countries[i].cca3 === borders[j]) {
-                  bordersArr.push(countries[i].name.common);
-                }
-              }
-            }
-          }
-        };
-        getBorderFullName();
+        const langArr = getValuesArr(languages);
+        const currArr = getValuesArr(currencies);
+        const bordersArr = getBorderFullName(borders);
 
         const newCountry = {
           flags,
@@ -67,7 +80,7 @@ export default function CountryInfo() {
         setCountry(newCountry);
       }
     });
-  }, [countries, name]);
+  }, [countries, name, getBorderFullName]);
 
   useEffect(() => {
     getCountryInfo(name);
@@ -106,7 +119,7 @@ export default function CountryInfo() {
           dark_mode ? 'CountryInfo page dark_mode' : 'CountryInfo page'
         }`}
       >
-        <button className='btn has_shadow' onClick={goToHome}>
+        <button className='btn has_shadow' onClick={goBack}>
           <FaArrowLeft />
           Back
         </button>
@@ -128,14 +141,19 @@ export default function CountryInfo() {
             <span>Region: </span>
             {region}
           </p>
-          <p className='p'>
-            <span>Sub Region: </span>
-            {subregion}
-          </p>
-          <p className='p'>
-            <span>Capital: </span>
-            {capital}
-          </p>
+          {subregion ? (
+            <p className='p'>
+              <span>Sub Region: </span>
+              {subregion}
+            </p>
+          ) : null}
+
+          {capital ? (
+            <p className='p'>
+              <span>Capital: </span>
+              {capital}
+            </p>
+          ) : null}
         </div>
 
         <div className='secondary-info'>
@@ -143,10 +161,13 @@ export default function CountryInfo() {
             <span>Top Level Domain: </span>
             {tld.join(', ')}
           </p>
-          <p className='p'>
-            <span>Currencies: </span>
-            {`${currArr[0].name} (${currArr[0].symbol})`}
-          </p>
+
+          {currArr ? (
+            <p className='p'>
+              <span>Currencies: </span>
+              {`${currArr[0].name} (${currArr[0].symbol})`}
+            </p>
+          ) : null}
 
           {langArr ? (
             <p className='p'>
@@ -159,7 +180,6 @@ export default function CountryInfo() {
         {bordersArr.length ? (
           <div className='border-countries'>
             <p className='p'>Border Countries:</p>
-            {console.log(bordersArr)}
             <div className='countries-buttons'>
               {bordersArr.map((ctry) => {
                 return (
