@@ -5,7 +5,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useGlobalContext } from '../context';
-const url = 'https://restcountries.com/v3.1/name/';
 
 export default function CountryInfo() {
   const { name } = useParams();
