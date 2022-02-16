@@ -137,10 +137,14 @@ export default function CountryInfo() {
             <span>Population: </span>
             {new Intl.NumberFormat().format(population)}
           </p>
-          <p className='p'>
-            <span>Region: </span>
-            {region}
-          </p>
+
+          {region ? (
+            <p className='p'>
+              <span>Region: </span>
+              {region}
+            </p>
+          ) : null}
+
           {subregion ? (
             <p className='p'>
               <span>Sub Region: </span>
@@ -157,10 +161,12 @@ export default function CountryInfo() {
         </div>
 
         <div className='secondary-info'>
-          <p className='p'>
-            <span>Top Level Domain: </span>
-            {tld.join(', ')}
-          </p>
+          {tld ? (
+            <p className='p'>
+              <span>Top Level Domain: </span>
+              {tld.join(', ')}
+            </p>
+          ) : null}
 
           {currArr ? (
             <p className='p'>
