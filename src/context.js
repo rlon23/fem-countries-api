@@ -60,8 +60,6 @@ const AppProvider = ({ children }) => {
     const byWord = countries.filter((country) =>
       country.name.common.toLowerCase().includes(lowerCase)
     );
-
-    console.log(typeof word, byWord);
     setRegionFilter(lowerCase);
     setFilteredCountries(byWord);
   };
