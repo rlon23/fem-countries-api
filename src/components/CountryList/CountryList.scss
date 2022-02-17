@@ -1,0 +1,25 @@
+@import './../../scss/mixins';
+
+.CountryList {
+  display: grid;
+  margin: 0 40px;
+
+  @include breakpoint(sm) {
+    margin: 0;
+    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoint(md) {
+    gap: 40px;
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include breakpoint(xl) {
+    gap: 74px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

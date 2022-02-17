@@ -1,3 +1,4 @@
+import './CountryList.scss';
 import React from 'react';
 import { useGlobalContext } from '../../context';
 import CountryCard from '../CountryCard/CountryCard';
@@ -11,7 +12,7 @@ export default function CountryList() {
   }
 
   return (
-    <section className='CountryList'>
+    <ul className='CountryList'>
       {(regionFilter === 'all' ? countries : filteredCountries).map(
         (country) => {
           return (
@@ -27,6 +28,6 @@ export default function CountryList() {
           );
         }
       )}
-    </section>
+    </ul>
   );
 }

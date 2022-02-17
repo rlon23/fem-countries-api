@@ -123,84 +123,91 @@ export default function CountryInfo() {
           <FaArrowLeft />
           Back
         </button>
-        <div className='CountryInfo__flag'>
-          <img src={flags.svg} alt='' />
-        </div>
-        <div className='main-info'>
-          <p className='common-name'>{name}</p>
 
-          <p className='p'>
-            <span>Official Name: </span>
-            {countryName.official}
-          </p>
-          <p className='p'>
-            <span>Population: </span>
-            {new Intl.NumberFormat().format(population)}
-          </p>
-
-          {region ? (
-            <p className='p'>
-              <span>Region: </span>
-              {region}
-            </p>
-          ) : null}
-
-          {subregion ? (
-            <p className='p'>
-              <span>Sub Region: </span>
-              {subregion}
-            </p>
-          ) : null}
-
-          {capital ? (
-            <p className='p'>
-              <span>Capital: </span>
-              {capital}
-            </p>
-          ) : null}
-        </div>
-
-        <div className='secondary-info'>
-          {tld ? (
-            <p className='p'>
-              <span>Top Level Domain: </span>
-              {tld.join(', ')}
-            </p>
-          ) : null}
-
-          {currArr ? (
-            <p className='p'>
-              <span>Currencies: </span>
-              {`${currArr[0].name} (${currArr[0].symbol})`}
-            </p>
-          ) : null}
-
-          {langArr ? (
-            <p className='p'>
-              <span>Languages: </span>
-              {langArr.join(', ')}
-            </p>
-          ) : null}
-        </div>
-
-        {bordersArr.length ? (
-          <div className='border-countries'>
-            <p className='p'>Border Countries:</p>
-            <div className='countries-buttons'>
-              {bordersArr.map((ctry) => {
-                return (
-                  <button
-                    className='btn btn-country has_shadow'
-                    key={ctry}
-                    onClick={() => goToCountry(ctry)}
-                  >
-                    {ctry}
-                  </button>
-                );
-              })}
-            </div>
+        <div className='CountryInfo__container'>
+          <div className='CountryInfo__flag'>
+            <img src={flags.svg} alt='' />
           </div>
-        ) : null}
+          <div className='CountryInfo__text'>
+            <p className='common-name'>{name}</p>
+
+            <div className='info-group'>
+              <div className='main-info'>
+                <p className='p'>
+                  <span>Official Name: </span>
+                  {countryName.official}
+                </p>
+                <p className='p'>
+                  <span>Population: </span>
+                  {new Intl.NumberFormat().format(population)}
+                </p>
+
+                {region ? (
+                  <p className='p'>
+                    <span>Region: </span>
+                    {region}
+                  </p>
+                ) : null}
+
+                {subregion ? (
+                  <p className='p'>
+                    <span>Sub Region: </span>
+                    {subregion}
+                  </p>
+                ) : null}
+
+                {capital ? (
+                  <p className='p'>
+                    <span>Capital: </span>
+                    {capital}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className='secondary-info'>
+                {tld ? (
+                  <p className='p'>
+                    <span>Top Level Domain: </span>
+                    {tld.join(', ')}
+                  </p>
+                ) : null}
+
+                {currArr ? (
+                  <p className='p'>
+                    <span>Currencies: </span>
+                    {`${currArr[0].name} (${currArr[0].symbol})`}
+                  </p>
+                ) : null}
+
+                {langArr ? (
+                  <p className='p'>
+                    <span>Languages: </span>
+                    {langArr.join(', ')}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+
+            {bordersArr.length ? (
+              <div className='border-countries'>
+                <p className='p'>Border Countries:</p>
+                <div className='countries-buttons'>
+                  {bordersArr.map((ctry) => {
+                    return (
+                      <button
+                        className='btn btn-country has_shadow'
+                        key={ctry}
+                        onClick={() => goToCountry(ctry)}
+                      >
+                        {ctry}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : null}
+          </div>
+        </div>
       </div>
     );
   }

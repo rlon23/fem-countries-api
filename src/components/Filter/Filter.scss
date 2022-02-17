@@ -1,6 +1,12 @@
+@import './.././../scss/mixins';
+
 .Filter {
   position: relative;
   margin-bottom: 2.0625rem;
+
+  @include breakpoint(md) {
+    margin-left: 46px;
+  }
 
   .dropdown__button {
     display: flex;
@@ -18,6 +24,10 @@
     line-height: 1rem;
     padding: 1rem 1.25rem;
     margin-bottom: 0.3125rem;
+
+    @include breakpoint(md) {
+      font-size: 0.875rem;
+    }
   }
 
   .region_list {
@@ -30,6 +40,10 @@
     font-size: 0.75rem;
     list-style: none;
 
+    @include breakpoint(md) {
+      font-size: 0.875rem;
+    }
+
     &.filter_open {
       display: block;
     }
@@ -38,6 +52,10 @@
       margin-bottom: 0.5rem;
       font-weight: 600;
       cursor: pointer;
+
+      @include breakpoint(md) {
+        margin-bottom: 0.5625rem;
+      }
 
       &:last-child {
         margin-bottom: 0;

@@ -1,8 +1,14 @@
+@import './../../scss/mixins';
+
 .CountryCard {
-  margin: 0 2.5rem 2.5rem;
+  margin-bottom: 2.5rem;
   background-color: var(--white);
   border-radius: 5px;
   overflow: hidden;
+
+  @include breakpoint(sm) {
+    margin-bottom: 0;
+  }
 
   &__flag {
     background-color: bisque;

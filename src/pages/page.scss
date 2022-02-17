@@ -1,9 +1,33 @@
-.page {
-  margin-top: 5rem;
+@import './../scss/mixins';
 
+.page {
+  margin-top: 80px;
   color: var(--black);
   background-color: var(--very-light-gray);
-  padding: 1.5rem 1rem 1.5rem;
+  padding: 24px 16px 24px;
+  // height: calc(100% - 80px);
+
+  @include breakpoint(md) {
+    padding: 46px 40px;
+  }
+
+  @include breakpoint(lg) {
+    padding: 46px 60px;
+  }
+
+  @include breakpoint(xl) {
+    padding: 46px 80px;
+  }
+
+  &__search {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+
+    @include breakpoint(md) {
+      flex-flow: row nowrap;
+    }
+  }
 
   &.dark_mode {
     color: var(--white);

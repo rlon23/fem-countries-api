@@ -9,7 +9,7 @@ function CountryCard({ dark_mode, name, population, region, capital, flag }) {
   };
 
   return (
-    <article
+    <li
       className={`${
         dark_mode
           ? 'CountryCard dark_mode has_shadow'
@@ -38,7 +38,7 @@ function CountryCard({ dark_mode, name, population, region, capital, flag }) {
           </p>
         ) : null}
       </div>
-    </article>
+    </li>
   );
 }
 

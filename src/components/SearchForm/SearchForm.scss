@@ -1,6 +1,14 @@
+@import './../../scss/mixins';
+
 .SearchForm {
+  margin-bottom: 2.5625rem;
+
+  @include breakpoint(md) {
+    flex-basis: 480px;
+    margin-bottom: 2.875rem;
+  }
+
   &__input {
-    margin-bottom: 2.5625rem;
     padding: 0 0.75rem 0 4.625rem;
     background-image: url('./../../images/search-solid-gray.svg');
     background-repeat: no-repeat;

@@ -8,8 +8,10 @@ export default function Home() {
   const { dark_mode } = useGlobalContext();
   return (
     <main className={`${dark_mode ? 'page dark_mode' : 'page'}`}>
-      <SearchForm />
-      <Filter />
+      <div className='page__search'>
+        <SearchForm />
+        <Filter />
+      </div>
       <CountryList />
     </main>
   );
