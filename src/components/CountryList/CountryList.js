@@ -18,7 +18,7 @@ export default function CountryList() {
           return (
             <CountryCard
               dark_mode={dark_mode}
-              key={country.cca3}
+              key={country.name.common}
               name={country.name.common}
               population={country.population}
               region={country.region}

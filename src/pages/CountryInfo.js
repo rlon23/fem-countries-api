@@ -32,6 +32,7 @@ export default function CountryInfo() {
           }
         }
       }
+      
       return arr;
     },
     [countries]
@@ -47,7 +48,8 @@ export default function CountryInfo() {
 
   const getCountryInfo = useCallback(() => {
     countries.forEach((item) => {
-      if (item.name.common.toLowerCase() === name.toLowerCase()) {
+      
+      if (item.name.common.toLowerCase() === name.toLowerCase()) {        
         const {
           flags,
           name: countryName,
@@ -63,7 +65,7 @@ export default function CountryInfo() {
 
         const langArr = getValuesArr(languages);
         const currArr = getValuesArr(currencies);
-        const bordersArr = getBorderFullName(borders);
+        const bordersArr = getBorderFullName(borders);        
 
         const newCountry = {
           flags,
@@ -126,7 +128,7 @@ export default function CountryInfo() {
 
         <div className='CountryInfo__container'>
           <div className='CountryInfo__flag'>
-            <img src={flags.svg} alt='' />
+            <img src={flags.svg} alt={flags.alt} />
           </div>
           <div className='CountryInfo__text'>
             <p className='common-name'>{name}</p>

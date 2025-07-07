@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 
-const url = 'https://restcountries.com/v3.1/all';
+const url = 'https://restcountries.com/v3.1/all?fields=region,name,population,capital,flags,borders,languages,subregion,cca3,currencies';
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
